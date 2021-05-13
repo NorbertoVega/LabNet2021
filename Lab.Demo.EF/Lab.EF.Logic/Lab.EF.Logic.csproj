@@ -48,11 +48,22 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ProductsLogic.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
     <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Lab.EF.Data\Lab.EF.Data.csproj">
+      <Project>{A85DBDEB-E4A0-41D3-9678-E1115421C204}</Project>
+      <Name>Lab.EF.Data</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Lab.EF.Entities\Lab.EF.Entities.csproj">
+      <Project>{AAD99FE7-0530-4688-B66E-E1B7E89A2511}</Project>
+      <Name>Lab.EF.Entities</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
