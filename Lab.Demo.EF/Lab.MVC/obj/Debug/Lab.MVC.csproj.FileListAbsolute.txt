@@ -84,3 +84,16 @@ C:\Users\ale_m\Desktop\Practicas Lab 2019\Entity Framework\Lab.Demo.EF\Lab.MVC\o
 C:\Users\ale_m\Desktop\Practicas Lab 2019\Entity Framework\Lab.Demo.EF\Lab.MVC\obj\Debug\Lab.MVC.csproj.CopyComplete
 C:\Users\ale_m\Desktop\Practicas Lab 2019\Entity Framework\Lab.Demo.EF\Lab.MVC\obj\Debug\Lab.MVC.dll
 C:\Users\ale_m\Desktop\Practicas Lab 2019\Entity Framework\Lab.Demo.EF\Lab.MVC\obj\Debug\Lab.MVC.pdb
+C:\Users\ale_m\Desktop\Practicas Lab 2019\Entity Framework\Lab.Demo.EF\Lab.MVC\bin\Lab.EF.Entities.dll
+C:\Users\ale_m\Desktop\Practicas Lab 2019\Entity Framework\Lab.Demo.EF\Lab.MVC\bin\Lab.EF.Logic.dll
+C:\Users\ale_m\Desktop\Practicas Lab 2019\Entity Framework\Lab.Demo.EF\Lab.MVC\bin\Lab.EF.Data.dll
+C:\Users\ale_m\Desktop\Practicas Lab 2019\Entity Framework\Lab.Demo.EF\Lab.MVC\bin\EntityFramework.dll
+C:\Users\ale_m\Desktop\Practicas Lab 2019\Entity Framework\Lab.Demo.EF\Lab.MVC\bin\Lab.EF.Entities.pdb
+C:\Users\ale_m\Desktop\Practicas Lab 2019\Entity Framework\Lab.Demo.EF\Lab.MVC\bin\Lab.EF.Entities.dll.config
+C:\Users\ale_m\Desktop\Practicas Lab 2019\Entity Framework\Lab.Demo.EF\Lab.MVC\bin\Lab.EF.Logic.pdb
+C:\Users\ale_m\Desktop\Practicas Lab 2019\Entity Framework\Lab.Demo.EF\Lab.MVC\bin\Lab.EF.Logic.dll.config
+C:\Users\ale_m\Desktop\Practicas Lab 2019\Entity Framework\Lab.Demo.EF\Lab.MVC\bin\Lab.EF.Data.pdb
+C:\Users\ale_m\Desktop\Practicas Lab 2019\Entity Framework\Lab.Demo.EF\Lab.MVC\bin\Lab.EF.Data.dll.config
+C:\Users\ale_m\Desktop\Practicas Lab 2019\Entity Framework\Lab.Demo.EF\Lab.MVC\bin\EntityFramework.xml
+C:\Users\ale_m\Desktop\Practicas Lab 2019\Entity Framework\Lab.Demo.EF\Lab.MVC\bin\EntityFramework.SqlServer.dll
+C:\Users\ale_m\Desktop\Practicas Lab 2019\Entity Framework\Lab.Demo.EF\Lab.MVC\bin\EntityFramework.SqlServer.xml
