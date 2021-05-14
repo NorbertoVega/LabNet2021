@@ -8,18 +8,26 @@ using System.Threading.Tasks;
 
 namespace Lab.EF.Logic
 {
-    public class ProductsLogic
+    public class ProductsLogic: BaseLogic, IABMLogic<Products>
     {
-        private readonly NorthwindContext context;
-
-        public ProductsLogic()
-        {
-            context = new NorthwindContext();
-        }
-
         public List<Products> GetAll()
         {
             return context.Products.ToList();
+        }
+
+        public void Add(Products product)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void Delete(int id)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void Update(Products entity)
+        {
+            throw new NotImplementedException();
         }
     }
 }
