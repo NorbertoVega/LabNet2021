@@ -11,50 +11,106 @@ namespace Lab.Demo.EF.UI
     class Program
     {
         static void Main(string[] args)
-        {   /*
+        {   
             ProductsLogic productsLogic = new ProductsLogic();
+            
+            ShowProducts(productsLogic);
 
-            foreach (Products product in productsLogic.GetAll())
+            Products product = new Products { 
+                ProductName = "New Product",
+                UnitPrice = 15000
+            };
+
+            productsLogic.Add(product);
+            ShowProducts(productsLogic);
+
+            productsLogic.Update(new Products
             {
-                Console.WriteLine($"{product.ProductName} - {product.UnitPrice}");
-            }
-
-            Console.ReadLine();
-            */
-
-            RegionLogic regionLogic = new RegionLogic();
-
-            foreach (var region in regionLogic.GetAll())
-            {
-                Console.WriteLine($"{region.RegionID} - {region.RegionDescription}");
-            }
-
-            /*
-            regionLogic.Add(new Region { 
-                RegionID = 10,
-                RegionDescription = "Sarasa"
-            }); 
-
-            regionLogic.Delete(10);
-            */
-           
-
-
-            regionLogic.Update(new Region
-            {
-                RegionDescription = "Nueva descripcion de region",
-                RegionID = 10
+                ProductID = product.ProductID,
+                ProductName = "New name"
             });
+            ShowProducts(productsLogic);
+            
+            productsLogic.Delete(product);
+            ShowProducts(productsLogic);
+            
+            CustomersLogic customersLogic = new CustomersLogic();
 
-            Console.WriteLine("");
-            foreach (var region in regionLogic.GetAll())
+            Showcustomers(customersLogic);
+
+            Customers customer = new Customers
             {
-                Console.WriteLine($"{region.RegionID} - {region.RegionDescription}");
-            }
+                CustomerID = "ZZZZZ",
+                CompanyName = "New Company",
+                Address = "Fake Street 123"
+            };
+
+            customersLogic.Add(customer);
+            Showcustomers(customersLogic);
+
+            customersLogic.Update(new Customers
+            {
+                CustomerID = customer.CustomerID,
+                CompanyName = "Company name updated"
+            });
+            Showcustomers(customersLogic);
+
+            customersLogic.Delete(customer);
+            Showcustomers(customersLogic);
+
 
             Console.ReadLine();
-
-
         }
+
+        public static void ShowProducts(ProductsLogic productsLogic) 
+        {
+            try
+            {
+                Console.WriteLine("Products: ");
+
+                foreach (var product in productsLogic.GetAll())
+                {
+                    Console.WriteLine($"{product.ProductID} - {product.ProductName}  - {product.UnitPrice}");
+                }
+
+                Console.WriteLine("\n");
+            }
+            catch (NullReferenceException e)
+            {
+                Console.WriteLine(e.StackTrace);
+                Console.WriteLine("La lista de productos es vacia");
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e.StackTrace);
+                Console.WriteLine("Hubo un error al cargar la lista de productos");
+            }
+        }
+
+        public static void Showcustomers(CustomersLogic customersLogic)
+        {
+            try 
+            { 
+                Console.WriteLine("Customers:");
+
+                foreach (var customer in customersLogic.GetAll())
+                {
+                    Console.WriteLine($"{customer.CustomerID} - {customer.CompanyName}  - {customer.Address} - {customer.ContactName}");
+                }
+
+                Console.WriteLine("\n");
+            }
+            catch (NullReferenceException e)
+            {
+                Console.WriteLine(e.StackTrace);
+                Console.WriteLine("La lista de customers es vacia");
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e.StackTrace);
+                Console.WriteLine("Hubo un error al cargar la lista de customers");
+            }
+        }
+
     }
 }

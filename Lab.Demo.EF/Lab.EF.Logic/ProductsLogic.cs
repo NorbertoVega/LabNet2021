@@ -11,23 +11,66 @@ namespace Lab.EF.Logic
     public class ProductsLogic: BaseLogic, IABMLogic<Products>
     {
         public List<Products> GetAll()
-        {
-            return context.Products.ToList();
+        {                     
+                return context.Products.ToList();                  
         }
 
-        public void Add(Products product)
+        public void Add(Products newProduct)
         {
-            throw new NotImplementedException();
+            try
+            {
+                context.Products.Add(newProduct);
+                context.SaveChanges();
+            }
+            catch(Exception e)
+            {
+                Console.WriteLine(e.StackTrace);
+                Console.WriteLine("Hubo un error al agregar el producto");
+            }
         }
 
-        public void Delete(int id)
+        public void Delete(Products product)
         {
-            throw new NotImplementedException();
+            try
+            {
+                var productDelete = context.Products.Find(product.ProductID);
+
+                context.Products.Remove(productDelete);
+                context.SaveChanges();
+
+            }
+            catch (NullReferenceException e)
+            {
+                Console.WriteLine(e.StackTrace);
+                Console.WriteLine("El producto que se quiere eliminar no existe");
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e.StackTrace);
+                Console.WriteLine("Hubo un error al eliminar el producto");
+            }
         }
 
-        public void Update(Products entity)
+        public void Update(Products product)
         {
-            throw new NotImplementedException();
+            try
+            {
+                var productUpdate = context.Products.Find(product.ProductID);
+
+                productUpdate.ProductName = product.ProductName;
+                context.SaveChanges();
+
+            }
+            catch (NullReferenceException e)
+            {
+                Console.WriteLine(e.StackTrace);
+                Console.WriteLine("El producto que se quiere actualizar no existe");
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e.StackTrace);
+                Console.WriteLine("Hubo un error al actualizar el producto");
+            }
         }
     }
 }

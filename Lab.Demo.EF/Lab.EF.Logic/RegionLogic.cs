@@ -17,25 +17,58 @@ namespace Lab.EF.Logic
 
         public void Add(Region newRegion)
         {
-            context.Region.Add(newRegion);
-            context.SaveChanges();
+            try
+            {
+                context.Region.Add(newRegion);
+                context.SaveChanges();
+            }
+            catch(Exception e)
+            {
+                Console.WriteLine(e.StackTrace);
+                Console.WriteLine("Hubo un error al agregar el producto");
+            }
         }
 
-        public void Delete(int id)
+        public void Delete(Region region)
         {
-            var regionAEliminar = context.Region.Find(id);
+            try
+            {
+                var regionAEliminar = context.Region.Find(region.RegionID);
 
-            context.Region.Remove(regionAEliminar);
-            context.SaveChanges();
+                context.Region.Remove(regionAEliminar);
+                context.SaveChanges();
+            }
+            catch(NullReferenceException e)
+            {
+                Console.WriteLine(e.StackTrace);
+                Console.WriteLine("La región que se quiere eliminar no existe");
+            }
+            catch(Exception e)
+            {
+                Console.WriteLine(e.StackTrace);
+                Console.WriteLine("Hubo un error al eliminar la region");
+            }
         }
 
         public void Update(Region region)
         {
-            var regionUpdate = context.Region.Find(region.RegionID);
+            try
+            {
+                var regionUpdate = context.Region.Find(region.RegionID);
 
-            regionUpdate.RegionDescription = region.RegionDescription;
-
-            context.SaveChanges();
+                regionUpdate.RegionDescription = region.RegionDescription;
+                context.SaveChanges();
+            }
+            catch (NullReferenceException e)
+            {
+                Console.WriteLine(e.StackTrace);
+                Console.WriteLine("La región que se quiere actualizar no existe");
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e.StackTrace);
+                Console.WriteLine("Hubo un error al actualizar la region");
+            }
         }
     }
 }

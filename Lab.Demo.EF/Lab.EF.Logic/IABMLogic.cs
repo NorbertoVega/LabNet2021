@@ -11,7 +11,7 @@ namespace Lab.EF.Logic
     {
         List<T> GetAll();
         void Add(T entitity);
-        void Delete(int id);
+        void Delete(T entity);
 
         void Update(T entity);
     }
