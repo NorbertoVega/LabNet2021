@@ -30,8 +30,6 @@ namespace Lab.EF.Data
             modelBuilder.Entity<Region>()
                 .Property(e => e.RegionDescription)
                 .IsFixedLength();
-
-
         }
     }
 }

@@ -60,6 +60,7 @@ namespace Lab.Demo.EF.UI
 
 
             Console.ReadLine();
+
         }
 
         public static void ShowProducts(ProductsLogic productsLogic) 
