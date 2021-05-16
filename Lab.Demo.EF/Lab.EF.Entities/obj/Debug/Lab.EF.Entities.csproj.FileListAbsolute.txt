@@ -10,3 +10,5 @@ C:\Users\ale_m\Desktop\Practicas Lab 2019\Entity Framework\Lab.Demo.EF\Lab.EF.En
 C:\Users\ale_m\Desktop\Practicas Lab 2019\Entity Framework\Lab.Demo.EF\Lab.EF.Entities\obj\Debug\Lab.EF.Entities.csproj.CopyComplete
 C:\Users\ale_m\Desktop\Practicas Lab 2019\Entity Framework\Lab.Demo.EF\Lab.EF.Entities\obj\Debug\Lab.EF.Entities.dll
 C:\Users\ale_m\Desktop\Practicas Lab 2019\Entity Framework\Lab.Demo.EF\Lab.EF.Entities\obj\Debug\Lab.EF.Entities.pdb
+C:\Users\ale_m\Desktop\Practicas Lab 2019\Entity Framework\Lab.Demo.EF\Lab.EF.Entities\bin\Debug\Newtonsoft.Json.dll
+C:\Users\ale_m\Desktop\Practicas Lab 2019\Entity Framework\Lab.Demo.EF\Lab.EF.Entities\bin\Debug\Newtonsoft.Json.xml

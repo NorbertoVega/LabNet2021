@@ -1,4 +1,6 @@
 ﻿using Lab.EF.Data.API;
+using Lab.EF.Entities.API;
+using Lab.MVC.Models.API;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -12,9 +14,29 @@ namespace Lab.MVC.Controllers.API
         // GET: Photo
         public ActionResult Index()
         {
-            FetchAPIData data = new FetchAPIData();
+            try
+            {
+                FetchAPIData fetchData = new FetchAPIData();
 
-            return View();
+                List<Photo> photos = fetchData.Fetch();
+
+                List<PhotoView> photosView = photos.Select(p => new PhotoView
+                {
+                    Id = p.id,
+                    CameraName = p.camera.name,
+                    ImgSource = p.img_src,
+                    EarthDate = p.earth_date,
+                    RoverName = p.rover.name
+                }).ToList();
+
+                return View(photosView);
+            }
+            catch
+            {
+                return RedirectToAction("Index", "Error");
+
+            }
+
         }
     }
 }

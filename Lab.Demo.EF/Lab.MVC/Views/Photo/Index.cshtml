@@ -1,0 +1,37 @@
+﻿@model List<Lab.MVC.Models.API.PhotoView>
+
+@{
+    ViewBag.Title = "Mars Rovers Photos";
+}
+
+<h1>Mars Rovers Photos List</h1>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th scope="col">ID</th>
+            <th scope="col">Camera Name</th>
+            <th scope="col">Date</th>
+            <th scope="col">Rover's Name</th>
+            <th scope="col">Image Source</th>
+        </tr>
+    </thead>
+
+    <tbody>
+
+        @foreach (var photo in Model)
+        {
+        <tr>
+            <th scope="row">@photo.Id</th>
+            <td>@photo.CameraName</td>
+            <td>@photo.EarthDate</td>
+            <td>@photo.RoverName</td>
+            <td><a href="@photo.ImgSource">image link</a></td>
+        </tr>
+        }
+
+    </tbody>
+
+</table>
+
+
