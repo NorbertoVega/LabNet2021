@@ -16,17 +16,24 @@ namespace Lab.MVC.Controllers
         // GET: Product
         public ActionResult Index()
         {
-            List<Products> products = productLogic.GetAll();
-
-            List<ProductView> productsView = products.Select(p => new ProductView
+            try
             {
-                Id = p.ProductID,
-                Name = p.ProductName,
-                UnitPrice = p.UnitPrice,
-                UnitsInStock = p.UnitsInStock
-            }).ToList();
+                List<Products> products = productLogic.GetAll();
 
-            return View(productsView);
+                List<ProductView> productsView = products.Select(p => new ProductView
+                {
+                    Id = p.ProductID,
+                    Name = p.ProductName,
+                    UnitPrice = p.UnitPrice,
+                    UnitsInStock = p.UnitsInStock
+                }).ToList();
+
+                return View(productsView);
+            }
+            catch
+            {
+                return RedirectToAction("Index", "Error");
+            }
         }
 
         public ActionResult Insert()
@@ -79,15 +86,22 @@ namespace Lab.MVC.Controllers
         [HttpPost]
         public ActionResult Update(int id, ProductView productView)
         {
-            productLogic.Update(new Products 
+            try
             {
-                ProductID = id,
-                ProductName = productView.Name,
-                UnitPrice = productView.UnitPrice,
-                UnitsInStock = productView.UnitsInStock
-            });
+                productLogic.Update(new Products
+                {
+                    ProductID = id,
+                    ProductName = productView.Name,
+                    UnitPrice = productView.UnitPrice,
+                    UnitsInStock = productView.UnitsInStock
+                });
 
-            return RedirectToAction("Index");
+                return RedirectToAction("Index");
+            }
+            catch
+            {
+                return RedirectToAction("Index", "Error");
+            }
         }
     }
 }

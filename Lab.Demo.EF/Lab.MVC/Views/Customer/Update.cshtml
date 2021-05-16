@@ -1,0 +1,29 @@
+﻿@model Lab.MVC.Models.CustomerView
+
+@{
+    ViewBag.Title = "Update Customer Page";
+}
+
+<h1>Update Customer</h1>
+
+@using (Html.BeginForm("Update", "Customer", FormMethod.Post))
+{
+    <br>
+    <label>Company Name:</label>
+    <br>
+    @Html.TextBoxFor(c => c.CompanyName)
+    <br>
+
+    <label>Adress</label>
+    <br>
+    @Html.TextBoxFor(c => c.Address)
+    <br>
+
+    <label>Phone:</label>
+    <br>
+    @Html.TextBoxFor(c => c.Phone)
+    <br>
+
+    <br>
+    <input type="submit" value="Guardar" />
+}

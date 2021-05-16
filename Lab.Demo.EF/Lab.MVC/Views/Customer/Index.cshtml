@@ -1,0 +1,41 @@
+﻿@model List<Lab.MVC.Models.CustomerView>
+
+@{
+    ViewBag.Title = "Customer Page";
+}
+
+<h1>Customers List</h1>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th scope="col">ID</th>
+            <th scope="col">Company name</th>
+            <th scope="col">Adress</th>
+            <th scope="col">Phone</th>
+            <th scope="col">Delete</th>
+            <th scope="col">Update</th>
+        </tr>
+    </thead>
+
+    <tbody>
+
+        @foreach (var customer in Model)
+        {
+            <tr>
+                <th scope="row">@customer.ID</th>
+                <td>@customer.CompanyName</td>
+                <td>@customer.Address</td>
+                <td>@customer.Phone</td>
+                <td>@Html.ActionLink("delete", "Delete", new { id = customer.ID }, new { onclick = "return confirm('Está seguro de borrar')" })</td>
+                <td>@Html.ActionLink("update", "Update", new { id = customer.ID })</td>
+            </tr>
+        }
+
+    </tbody>
+
+</table>
+
+<div>
+    @Html.ActionLink("Insert new Customer", "Insert")
+</div>

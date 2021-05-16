@@ -1,0 +1,35 @@
+﻿@model Lab.MVC.Models.CustomerView
+
+@{
+    ViewBag.Title = "Save Customer Page";
+}
+
+<h1>Save Customer</h1>
+
+@using (Html.BeginForm("Insert", "Customer", FormMethod.Post))
+{
+    <br>
+    <label>Id:</label>
+    <br>
+    @Html.TextBoxFor(c => c.ID)
+    <br>
+
+    <br>
+    <label>Company Name:</label>
+    <br>
+    @Html.TextBoxFor(c => c.CompanyName)
+    <br>
+
+    <label>Adress</label>
+    <br>
+    @Html.TextBoxFor(c => c.Address)
+    <br>
+
+    <label>Phone:</label>
+    <br>
+    @Html.TextBoxFor(c => c.Phone)
+    <br>
+
+    <br>
+    <input type="submit" value="Guardar" />
+}

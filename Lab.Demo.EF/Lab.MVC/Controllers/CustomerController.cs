@@ -9,25 +9,25 @@ using System.Web.Mvc;
 
 namespace Lab.MVC.Controllers
 {
-    public class RegionController : Controller
+    public class CustomerController : Controller
     {
-        RegionLogic regionLogic = new RegionLogic();
+        CustomersLogic customersLogic = new CustomersLogic();
 
-        // GET: Region
+        // GET: Customer
         public ActionResult Index()
         {
             try
             {
-                List<Region> regiones = regionLogic.GetAll();
-
-                List<RegionView> regionsView = regiones.Select(r => new RegionView
+                List<Customers> customers = customersLogic.GetAll();
+                List<CustomerView> customerViews = customers.Select(c => new CustomerView
                 {
-                    Id = r.RegionID,
-                    Description = r.RegionDescription
-
+                    ID = c.CustomerID,
+                    CompanyName = c.CompanyName,
+                    Address = c.Address,
+                    Phone = c.Phone
                 }).ToList();
 
-                return View(regionsView);
+                return View(customerViews);
             }
             catch
             {
@@ -41,20 +41,22 @@ namespace Lab.MVC.Controllers
         }
 
         [HttpPost]
-        public ActionResult Insert(RegionView regionView)
+        public ActionResult Insert(CustomerView customerView)
         {
-            try 
+            try
             {
-                Region regionEntity = new Region 
+                Customers productEntity = new Customers
                 {
-                    RegionID = regionLogic.NextAvailableId(),
-                    RegionDescription = regionView.Description
+                    CustomerID = customerView.ID,
+                    CompanyName = customerView.CompanyName,
+                    Address = customerView.Address,
+                    Phone = customerView.Phone
+
                 };
 
-                regionLogic.Add(regionEntity);
+                customersLogic.Add(productEntity);
 
                 return RedirectToAction("Index");
-
             }
             catch
             {
@@ -62,11 +64,11 @@ namespace Lab.MVC.Controllers
             }
         }
 
-        public ActionResult Delete(int id)
+        public ActionResult Delete(string id)
         {
             try
             {
-                regionLogic.Delete(new Region { RegionID = id });
+                customersLogic.Delete(new Customers { CustomerID = id });
 
                 return RedirectToAction("Index");
             }
@@ -83,14 +85,16 @@ namespace Lab.MVC.Controllers
         }
 
         [HttpPost]
-        public ActionResult Update(int id, RegionView regionView)
+        public ActionResult Update(string id, CustomerView customerView)
         {
             try
             {
-                regionLogic.Update(new Region
+                customersLogic.Update(new Customers
                 {
-                    RegionID = id,
-                    RegionDescription = regionView.Description
+                    CustomerID = id,
+                    CompanyName = customerView.CompanyName,
+                    Address = customerView.Address,
+                    Phone = customerView.Phone
                 });
 
                 return RedirectToAction("Index");
@@ -100,5 +104,6 @@ namespace Lab.MVC.Controllers
                 return RedirectToAction("Index", "Error");
             }
         }
+
     }
 }
