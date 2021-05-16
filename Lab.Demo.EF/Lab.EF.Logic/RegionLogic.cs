@@ -22,10 +22,9 @@ namespace Lab.EF.Logic
                 context.Region.Add(newRegion);
                 context.SaveChanges();
             }
-            catch(Exception e)
+            catch
             {
-                Console.WriteLine(e.StackTrace);
-                Console.WriteLine("Hubo un error al agregar el producto");
+                throw;
             }
         }
 
@@ -38,16 +37,11 @@ namespace Lab.EF.Logic
                 context.Region.Remove(regionAEliminar);
                 context.SaveChanges();
             }
-            catch(NullReferenceException e)
+            catch
             {
-                Console.WriteLine(e.StackTrace);
-                Console.WriteLine("La región que se quiere eliminar no existe");
+                throw;
             }
-            catch(Exception e)
-            {
-                Console.WriteLine(e.StackTrace);
-                Console.WriteLine("Hubo un error al eliminar la region");
-            }
+        
         }
 
         public void Update(Region region)
@@ -59,15 +53,23 @@ namespace Lab.EF.Logic
                 regionUpdate.RegionDescription = region.RegionDescription;
                 context.SaveChanges();
             }
-            catch (NullReferenceException e)
+            catch 
             {
-                Console.WriteLine(e.StackTrace);
-                Console.WriteLine("La región que se quiere actualizar no existe");
+                throw;
             }
-            catch (Exception e)
+        }
+
+        public int NextAvailableId() 
+        {
+            try
             {
-                Console.WriteLine(e.StackTrace);
-                Console.WriteLine("Hubo un error al actualizar la region");
+                var nextId = context.Region.Max(r => r.RegionID);
+
+                return nextId + 1;
+            }
+            catch
+            {
+                return 1;
             }
         }
     }

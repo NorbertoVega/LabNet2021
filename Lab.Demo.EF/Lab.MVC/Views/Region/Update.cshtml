@@ -1,0 +1,18 @@
+﻿@model Lab.MVC.Models.RegionView
+
+@{
+    ViewBag.Title = "Update Region Page";
+}
+
+<h1>Update Region</h1>
+
+@using (Html.BeginForm("Update", "Region", FormMethod.Post))
+{
+    <br>
+    <label>Description: </label>
+    <br>
+    @Html.TextBoxFor(r => r.Description)
+    <br>
+    <br>
+    <input type="submit" value="Guardar" />
+}

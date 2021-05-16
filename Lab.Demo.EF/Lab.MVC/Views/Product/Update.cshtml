@@ -1,0 +1,29 @@
+﻿@model Lab.MVC.Models.ProductView
+
+@{
+    ViewBag.Title = "Update Product Page";
+}
+
+<h1>Save Product</h1>
+
+@using (Html.BeginForm("Update", "Product", FormMethod.Post))
+{ 
+    <br>
+    <label>Name:</label>
+    <br>
+    @Html.TextBoxFor(p => p.Name)
+    <br>
+
+    <label>Unit price:</label>
+    <br>
+    @Html.TextBoxFor(p => p.UnitPrice)
+    <br>
+
+    <label>Units in stock:</label>
+    <br>
+    @Html.TextBoxFor(p => p.UnitsInStock)
+    <br>
+
+    <br>
+    <input type="submit" value="Guardar" />
+}

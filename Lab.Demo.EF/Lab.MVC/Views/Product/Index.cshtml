@@ -1,0 +1,42 @@
+﻿@model List<Lab.MVC.Models.ProductView>
+
+@{
+    ViewBag.Title = "Product Page";
+}
+
+<h1>Products List</h1>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th scope="col">ID</th>
+            <th scope="col">Nombre</th>
+            <th scope="col">Unit Price</th>
+            <th scope="col">Units in stock</th>
+            <th scope="col">Delete</th>
+            <th scope="col">Update</th>
+        </tr>
+    </thead>
+
+    <tbody>
+
+        @foreach (var product in Model)
+        {
+        <tr>
+            <th scope="row">@product.Id</th>
+            <td>@product.Name</td>
+            <td>@product.UnitPrice</td>
+            <td>@product.UnitsInStock</td>
+            <td>@Html.ActionLink("delete", "Delete", new { id = product.Id }, new { onclick = "return confirm('Está seguro de borrar')" })</td>
+            <td>@Html.ActionLink("update", "Update", new { id = product.Id})</td>
+        </tr>
+        }
+
+    </tbody>
+
+</table>
+
+<div>
+    @Html.ActionLink("Insert new Product", "Insert")
+</div>
+

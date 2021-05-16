@@ -21,10 +21,9 @@ namespace Lab.EF.Logic
                 context.Customers.Add(customer);
                 context.SaveChanges();
             }
-            catch(Exception e)
+            catch
             {
-                Console.WriteLine(e.StackTrace);
-                Console.WriteLine("Hubo un error al agregar el customer");
+                throw;
             }
         }
 
@@ -36,16 +35,11 @@ namespace Lab.EF.Logic
                 context.Customers.Remove(customerDelete);
                 context.SaveChanges();
             }
-            catch(NullReferenceException e)
+            catch
             {
-                Console.WriteLine(e.StackTrace);
-                Console.WriteLine("El customer que se quiere eliminar no existe");
+                throw;
             }
-            catch (Exception e)
-            {
-                Console.WriteLine(e.StackTrace);
-                Console.WriteLine("Hubo un error al eliminar el customer");
-            }
+          
         }
 
         public void Update(Customers customer)
@@ -57,16 +51,11 @@ namespace Lab.EF.Logic
 
                 context.SaveChanges();
             }
-            catch (NullReferenceException e)
+            catch
             {
-                Console.WriteLine(e.StackTrace);
-                Console.WriteLine("El customer que se quiere actualizar no existe");
+                throw;
             }
-            catch (Exception e)
-            {
-                Console.WriteLine(e.StackTrace);
-                Console.WriteLine("Hubo un error al actualizar el customer");
-            }
+    
         }
     }
 }

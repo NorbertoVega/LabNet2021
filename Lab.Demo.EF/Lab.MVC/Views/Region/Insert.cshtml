@@ -1,0 +1,17 @@
+﻿@model Lab.MVC.Models.RegionView
+
+@{
+    ViewBag.Title = "Save Region Page";
+}
+
+<h1>Save Region</h1>
+
+@using (Html.BeginForm("Insert", "Region", FormMethod.Post))
+{
+    <br>
+    <label>Description: </label>
+    <br>
+    @Html.TextBoxFor(r => r.Description)
+    <br><br>
+    <input type="submit" value="Guardar" />
+}

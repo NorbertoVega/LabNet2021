@@ -22,10 +22,9 @@ namespace Lab.EF.Logic
                 context.Products.Add(newProduct);
                 context.SaveChanges();
             }
-            catch(Exception e)
+            catch
             {
-                Console.WriteLine(e.StackTrace);
-                Console.WriteLine("Hubo un error al agregar el producto");
+                throw;
             }
         }
 
@@ -39,16 +38,11 @@ namespace Lab.EF.Logic
                 context.SaveChanges();
 
             }
-            catch (NullReferenceException e)
+            catch 
             {
-                Console.WriteLine(e.StackTrace);
-                Console.WriteLine("El producto que se quiere eliminar no existe");
+                throw;
             }
-            catch (Exception e)
-            {
-                Console.WriteLine(e.StackTrace);
-                Console.WriteLine("Hubo un error al eliminar el producto");
-            }
+         
         }
 
         public void Update(Products product)
@@ -61,15 +55,9 @@ namespace Lab.EF.Logic
                 context.SaveChanges();
 
             }
-            catch (NullReferenceException e)
+            catch
             {
-                Console.WriteLine(e.StackTrace);
-                Console.WriteLine("El producto que se quiere actualizar no existe");
-            }
-            catch (Exception e)
-            {
-                Console.WriteLine(e.StackTrace);
-                Console.WriteLine("Hubo un error al actualizar el producto");
+                throw;
             }
         }
     }
