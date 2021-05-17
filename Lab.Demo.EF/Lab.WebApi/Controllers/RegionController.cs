@@ -16,63 +16,42 @@ namespace Lab.WebApi.Controllers
         // GET api/values
         public IEnumerable<Region> Get()
         {
-            try
-            {
-                return regionLogic.GetAll();
-            }
-            catch
-            {
-                return null;
-            }
+             return regionLogic.GetAll();
+      
         }
 
         // GET api/values/5
         public Region Get(int id)
         {
-            try
-            {
-                return regionLogic.GetAll().Where(r => r.RegionID == id).ToList().First();
-            }
-            catch
-            {
-                return null;
-            }
+            return regionLogic.GetAll().Where(r => r.RegionID == id).ToList().First();
+
         }
 
         // POST api/values
         public void Post([FromBody] Region region)
         {
-            try
-            {
-                region.RegionID = regionLogic.NextAvailableId();
-                regionLogic.Add(region);
-            }
-            catch { }
+            region.RegionID = regionLogic.NextAvailableId();
+            regionLogic.Add(region);
+           
         }
 
         // PUT api/values/5
         public void Put(int id, [FromBody] Region region)
-        {
-            try
+        {           
+            regionLogic.Update(new Region
             {
-                regionLogic.Update(new Region
-                {
-                    RegionID = id,
-                    RegionDescription = region.RegionDescription
-                });
-            }
-            catch { }
-
+                RegionID = id,
+                RegionDescription = region.RegionDescription
+            });
+          
         }
 
         // DELETE api/values/5
         public void Delete(int id)
         {
-            try
-            {
-                regionLogic.Delete(new Region { RegionID = id });
-            }
-            catch { }
+            regionLogic.Delete(new Region { RegionID = id });
+            
+           
         }
     }
 }

@@ -16,71 +16,49 @@ namespace Lab.WebApi.Controllers
         // GET api/values
         public IEnumerable<Customers> Get()
         {
-            try
-            {
-                return customersLogic.GetAll();
-            }
-            catch
-            {
-                return null;
-            }
+            return customersLogic.GetAll();
+
         }
 
         // GET api/values/5
         public Customers Get(string id)
         {
-            try
-            {
-                return customersLogic.GetAll().Where(c => c.CustomerID == id).ToList().First();
-            }
-            catch
-            {
-                return null;
-            }
+            return customersLogic.GetAll().Where(c => c.CustomerID == id).ToList().First();
+           
         }
 
         // POST api/values
         public void Post([FromBody] Customers customer)
         {
-            try
-            {
-                customersLogic.Add(customer);
-            }
-            catch { }
+            customersLogic.Add(customer);
+            
         }
 
         // PUT api/values/5
         public void Put(string id, [FromBody] Customers customer)
         {
-            try
+            customersLogic.Update(new Customers
             {
-                customersLogic.Update(new Customers
-                {
-                    CustomerID = id,
-                    CompanyName = customer.CompanyName,
-                    ContactName = customer.ContactName,
-                    ContactTitle = customer.ContactTitle,
-                    Address = customer.Address,
-                    City = customer.City,
-                    Region = customer.Region,
-                    PostalCode = customer.PostalCode,
-                    Country = customer.Country,
-                    Phone = customer.Phone,
-                    Fax = customer.Fax
-                });
-            }
-            catch { }
+                CustomerID = id,
+                CompanyName = customer.CompanyName,
+                ContactName = customer.ContactName,
+                ContactTitle = customer.ContactTitle,
+                Address = customer.Address,
+                City = customer.City,
+                Region = customer.Region,
+                PostalCode = customer.PostalCode,
+                Country = customer.Country,
+                Phone = customer.Phone,
+                Fax = customer.Fax
+            }); 
 
         }
 
         // DELETE api/values/5
         public void Delete(string id)
         {
-            try
-            {
-                customersLogic.Delete(new Customers { CustomerID = id });
-            }
-            catch { }
+            customersLogic.Delete(new Customers { CustomerID = id });
+          
         }
     }
 }
