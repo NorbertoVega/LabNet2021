@@ -29,9 +29,9 @@ namespace Lab.MVC.Controllers
 
                 return View(regionsView);
             }
-            catch
+            catch (Exception e)
             {
-                return RedirectToAction("Index", "Error");
+                return RedirectToAction("Index", "Error", new { message = $"Descripción de error: {e.Message}" });
             }
         }
 
@@ -56,9 +56,9 @@ namespace Lab.MVC.Controllers
                 return RedirectToAction("Index");
 
             }
-            catch
+            catch (Exception e)
             {
-                return RedirectToAction("Index", "Error");
+                return RedirectToAction("Index", "Error", new { message = $"Descripción de error: {e.Message}" });
             }
         }
 
@@ -70,9 +70,9 @@ namespace Lab.MVC.Controllers
 
                 return RedirectToAction("Index");
             }
-            catch
+            catch (Exception e)
             {
-                return RedirectToAction("Index", "Error");
+                return RedirectToAction("Index", "Error", new { message = $"Descripción de error: {e.Message}" });
 
             }
         }
@@ -95,9 +95,9 @@ namespace Lab.MVC.Controllers
 
                 return RedirectToAction("Index");
             }
-            catch
+            catch (Exception e)
             {
-                return RedirectToAction("Index", "Error");
+                return RedirectToAction("Index", "Error", new { message = $"Descripción de error: {e.Message}" });
             }
         }
     }

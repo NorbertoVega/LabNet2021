@@ -51,7 +51,6 @@ namespace Lab.WebApi.Controllers
         {
             regionLogic.Delete(new Region { RegionID = id });
             
-           
         }
     }
 }

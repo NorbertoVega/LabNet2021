@@ -31,9 +31,9 @@ namespace Lab.MVC.Controllers.API
 
                 return View(photosView);
             }
-            catch
+            catch (Exception e)
             {
-                return RedirectToAction("Index", "Error");
+                return RedirectToAction("Index", "Error", new { message = $"Descripción de error: {e.Message}" });
 
             }
 
