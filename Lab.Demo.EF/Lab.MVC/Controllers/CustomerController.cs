@@ -29,9 +29,10 @@ namespace Lab.MVC.Controllers
 
                 return View(customerViews);
             }
-            catch
+            catch(Exception e)
             {
-                return RedirectToAction("Index", "Error");
+                return RedirectToAction("Index", "Error", new { message = $"Descripción de error: {e.Message}" });
+
             }
         }
 
@@ -43,6 +44,12 @@ namespace Lab.MVC.Controllers
         [HttpPost]
         public ActionResult Insert(CustomerView customerView)
         {
+            if (customerView == null)
+            {
+                return RedirectToAction("Index", "Error", new { message = $"Descripción de error: ningún campo fue completado" });
+
+            }
+
             try
             {
                 Customers productEntity = new Customers
@@ -58,9 +65,9 @@ namespace Lab.MVC.Controllers
 
                 return RedirectToAction("Index");
             }
-            catch
+            catch(Exception e)
             {
-                return RedirectToAction("Index", "Error");
+                return RedirectToAction("Index", "Error", new { message = $"Descripción de error: {e.Message}" });
             }
         }
 
@@ -72,9 +79,9 @@ namespace Lab.MVC.Controllers
 
                 return RedirectToAction("Index");
             }
-            catch
+            catch(Exception e)
             {
-                return RedirectToAction("Index", "Error");
+                return RedirectToAction("Index", "Error", new { message = $"Descripción de error: {e.Message}" });
 
             }
         }
@@ -99,9 +106,9 @@ namespace Lab.MVC.Controllers
 
                 return RedirectToAction("Index");
             }
-            catch
+            catch (Exception e)
             {
-                return RedirectToAction("Index", "Error");
+                return RedirectToAction("Index", "Error", new { message = $"Descripción de error: {e.Message}" });
             }
         }
 

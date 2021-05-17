@@ -48,6 +48,15 @@ namespace Lab.EF.Logic
             { 
                 var customerUpdate = context.Customers.Find(customer.CustomerID);
                 customerUpdate.CompanyName = customer.CompanyName;
+                customerUpdate.ContactName = customer.ContactName;
+                customerUpdate.ContactTitle = customer.ContactTitle;
+                customerUpdate.Address = customer.Address;
+                customerUpdate.City = customer.City;
+                customerUpdate.Region = customer.Region;
+                customerUpdate.PostalCode = customer.PostalCode;
+                customerUpdate.Country = customer.Country;
+                customerUpdate.Phone = customer.Phone;
+                customer.Fax = customer.Fax;
 
                 context.SaveChanges();
             }

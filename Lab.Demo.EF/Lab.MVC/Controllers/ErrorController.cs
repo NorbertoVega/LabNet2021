@@ -9,8 +9,9 @@ namespace Lab.MVC.Controllers
     public class ErrorController : Controller
     {
         // GET: Error
-        public ActionResult Index()
+        public ActionResult Index(string message)
         {
+            ViewData["ErrorMessage"] = message;
             return View();
         }
     }

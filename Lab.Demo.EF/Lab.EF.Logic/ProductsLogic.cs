@@ -52,6 +52,15 @@ namespace Lab.EF.Logic
                 var productUpdate = context.Products.Find(product.ProductID);
 
                 productUpdate.ProductName = product.ProductName;
+                productUpdate.SupplierID = product.SupplierID;
+                productUpdate.CategoryID = product.CategoryID;
+                productUpdate.QuantityPerUnit = product.QuantityPerUnit;
+                productUpdate.UnitPrice = product.UnitPrice;
+                productUpdate.UnitsInStock = product.UnitsInStock;
+                productUpdate.UnitsOnOrder = product.UnitsOnOrder;
+                productUpdate.ReorderLevel = product.ReorderLevel;
+                productUpdate.Discontinued = product.Discontinued;
+
                 context.SaveChanges();
 
             }
