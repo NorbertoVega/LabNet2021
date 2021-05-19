@@ -8,6 +8,11 @@ import { ProductsComponent } from './components/products/products.component';
 import { ListProductsComponent } from './components/list-products/list-products.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
+import {MatToolbarModule} from '@angular/material/toolbar';
+import {ReactiveFormsModule} from '@angular/forms';
+
+
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -18,7 +23,10 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
   imports: [
     BrowserModule,
     AppRoutingModule,
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
+    MatToolbarModule,
+    ReactiveFormsModule,
+    
   ],
   providers: [],
   bootstrap: [AppComponent]
