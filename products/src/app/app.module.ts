@@ -11,7 +11,9 @@ import { EditComponent } from './components/edit/edit.component';
 import {MatToolbarModule} from '@angular/material/toolbar';
 import {ReactiveFormsModule} from '@angular/forms';
 import {MatDialogModule} from '@angular/material/dialog';
-import {MatTableModule} from '@angular/material/table';
+import {MatCardModule} from '@angular/material/card';
+
+
 
 @NgModule({
   declarations: [
@@ -27,7 +29,7 @@ import {MatTableModule} from '@angular/material/table';
     MatToolbarModule,
     ReactiveFormsModule,
     MatDialogModule,
-    MatTableModule
+    MatCardModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

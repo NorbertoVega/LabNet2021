@@ -1,6 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 import { AbstractControl, FormBuilder, FormGroup } from '@angular/forms';
 
+import { ProductService } from '../../services/product.service';
+
+import { MatDialog } from '@angular/material/dialog';
+
+var nextId = 6;
+
 @Component({
   selector: 'app-new-product',
   templateUrl: './new-product.component.html',
@@ -13,8 +19,8 @@ export class NewProductComponent implements OnInit {
   get nameCtrl():AbstractControl {
     return this.form.get('name');
   }
-  get suplierIdCtrl():AbstractControl {
-    return this.form.get('suplierId');
+  get supplierIdCtrl():AbstractControl {
+    return this.form.get('supplierId');
   }
   get categoryIdCtrl():AbstractControl {
     return this.form.get('categoryId');
@@ -38,13 +44,14 @@ export class NewProductComponent implements OnInit {
     return this.form.get('discontinued');
   }
 
-  constructor(private formBuilder: FormBuilder) { }
+
+  constructor(private formBuilder: FormBuilder, private listService: ProductService, private dialog: MatDialog ) { }
 
   ngOnInit(): void {
 
     this.form = this.formBuilder.group ({
       name: [''], 
-      suplierId: [''],
+      supplierId: [''],
       categoryId: [''],
       quantity: [''],
       unitPrice: [''],
@@ -63,8 +70,8 @@ export class NewProductComponent implements OnInit {
     if (this.nameCtrl) {
       this.nameCtrl.setValue('');
     }
-    if (this.suplierIdCtrl) {
-      this.suplierIdCtrl.setValue('');
+    if (this.supplierIdCtrl) {
+      this.supplierIdCtrl.setValue('');
     }
     if (this.categoryIdCtrl) {
       this.categoryIdCtrl.setValue('');
@@ -87,6 +94,16 @@ export class NewProductComponent implements OnInit {
     if (this.discontinuedCtrl) {
       this.discontinuedCtrl.setValue('');
     }
+  }
+
+  
+  addProduct() {
+    this.listService.addProduct({
+      id: nextId, name: this.nameCtrl.value, supplierId: this.supplierIdCtrl.value, categoryId: this.categoryIdCtrl.value, quantityPUnit: this.quantityCtrl.value, unitPrice: this.unitPriceCtrl.value,
+      unitsInStock: this.unitsStockCtrl.value, unitsOnOrder: this.unitsOnOrderCtrl.value, reorderLevel: this.reorderLevelCtrl.value, discontinued: this.discontinuedCtrl.value
+    });
+    nextId = nextId + 1;
+    this.dialog.closeAll();
   }
 
 }

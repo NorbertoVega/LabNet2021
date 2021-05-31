@@ -5,6 +5,10 @@ import { EditComponent } from '../edit/edit.component';
 
 import { MatDialog } from '@angular/material/dialog';
 
+import { ProductService } from '../../services/product.service';
+import { Product } from '../../models/Products';
+
+import { Observable, of } from 'rxjs';
 
 @Component({
   selector: 'app-list-products',
@@ -13,26 +17,27 @@ import { MatDialog } from '@angular/material/dialog';
 })
 export class ListProductsComponent implements OnInit {
 
-  dataSource = [
-    {id: 1, name: 'Chai', supplierId: 1, categoryId: 1, quantityPUnit: '10 boxes x 20 bags', unitPrice: 18.00, unitsInStock: 39, unitsOnOrder: 0, reorderLevel: 10, discontinued: 0 },
-    {id: 1, name: 'Chai', supplierId: 1, categoryId: 1, quantityPUnit: '10 boxes x 20 bags', unitPrice: 18.00, unitsInStock: 39, unitsOnOrder: 0, reorderLevel: 10, discontinued: 0 },
-    {id: 1, name: 'Chai', supplierId: 1, categoryId: 1, quantityPUnit: '10 boxes x 20 bags', unitPrice: 18.00, unitsInStock: 39, unitsOnOrder: 0, reorderLevel: 10, discontinued: 0 },
-    {id: 1, name: 'Chai', supplierId: 1, categoryId: 1, quantityPUnit: '10 boxes x 20 bags', unitPrice: 18.00, unitsInStock: 39, unitsOnOrder: 0, reorderLevel: 10, discontinued: 0 }
-  ]
-  displayedColumns: string[] = ['id', 'name', 'supplierId', 'categoryId','quantityPUnit','unitPrice',
-    'unitsInStock','unitsOnOrder','reorderLevel','discontinued','edit','delete'];
+  productList$: Observable<Product[]>;
 
-  constructor(private matDialog: MatDialog) { }
+  dataSource : Product[] 
+
+  constructor(private matDialog: MatDialog, private listService: ProductService) { }
 
   ngOnInit(): void {
+    this.dataSource = this.listService.getProducts();
+    this.productList$ = this.listService.getProductList$();
+    this.productList$.subscribe(products => this.dataSource = products);
   }
 
   openDialog(): void {
     this.matDialog.open(NewProductComponent);
   }
 
-  openEditDialog(): void {
-    this.matDialog.open(EditComponent)
+  openEditDialog(_id): void {
+    this.matDialog.open(EditComponent, {data: {editId: _id}});
   }
 
+  deleteProduct(_id): void {
+    this.listService.deleteProduct(_id);
+  }
 }

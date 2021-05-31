@@ -1,8 +1,18 @@
 import { Component, OnInit } from '@angular/core';
 import { AbstractControl, FormBuilder, FormGroup } from '@angular/forms';
 
+import {Inject} from '@angular/core';
+import {MAT_DIALOG_DATA} from '@angular/material/dialog';
+
+import { MatDialog } from '@angular/material/dialog';
+
+import { ProductService } from '../../services/product.service';
+import { Product } from '../../models/Products';
+
+
 @Component({
   selector: 'app-edit',
+  template: 'passed in {{ data.editId }}',
   templateUrl: './edit.component.html',
   styleUrls: ['./edit.component.css']
 })
@@ -13,8 +23,8 @@ export class EditComponent implements OnInit {
   get nameCtrl():AbstractControl {
     return this.form.get('name');
   }
-  get suplierIdCtrl():AbstractControl {
-    return this.form.get('suplierId');
+  get supplierIdCtrl():AbstractControl {
+    return this.form.get('supplierId');
   }
   get categoryIdCtrl():AbstractControl {
     return this.form.get('categoryId');
@@ -38,20 +48,25 @@ export class EditComponent implements OnInit {
     return this.form.get('discontinued');
   }
 
-  constructor(private formBuilder: FormBuilder) { }
+  constructor(private formBuilder: FormBuilder, @Inject(MAT_DIALOG_DATA) public data: {editId: string}, private listService: ProductService, private matDialog: MatDialog) { }
+
+  private auxProduct : Product;
 
   ngOnInit(): void {
 
+    var _id = +this.data.editId;
+    this.auxProduct = this.listService.getOneProduct(_id);
+
     this.form = this.formBuilder.group ({
-      name: [''], 
-      suplierId: [''],
-      categoryId: [''],
-      quantity: [''],
-      unitPrice: [''],
-      unitsStock: [''],
-      unitsOnOrder: [''],
-      reorderLevel: [''],
-      discontinued: ['']
+      name: [this.auxProduct.name], 
+      supplierId: [this.auxProduct.supplierId],
+      categoryId: [this.auxProduct.categoryId],
+      quantity: [this.auxProduct.quantityPUnit],
+      unitPrice: [this.auxProduct.unitPrice],
+      unitsStock: [this.auxProduct.unitsInStock],
+      unitsOnOrder: [this.auxProduct.unitsOnOrder],
+      reorderLevel: [this.auxProduct.reorderLevel],
+      discontinued: [this.auxProduct.discontinued]
     });
   }
 
@@ -63,8 +78,8 @@ export class EditComponent implements OnInit {
     if (this.nameCtrl) {
       this.nameCtrl.setValue('');
     }
-    if (this.suplierIdCtrl) {
-      this.suplierIdCtrl.setValue('');
+    if (this.supplierIdCtrl) {
+      this.supplierIdCtrl.setValue('');
     }
     if (this.categoryIdCtrl) {
       this.categoryIdCtrl.setValue('');
@@ -89,4 +104,14 @@ export class EditComponent implements OnInit {
     }
   }
 
+  editProduct() {
+    const _id = +this.data.editId;
+
+    this.listService.editProduct({
+      id: _id, name: this.nameCtrl.value, supplierId: this.supplierIdCtrl.value, categoryId: this.categoryIdCtrl.value, quantityPUnit: this.quantityCtrl.value, unitPrice: this.unitPriceCtrl.value,
+      unitsInStock: this.unitsStockCtrl.value, unitsOnOrder: this.unitsOnOrderCtrl.value, reorderLevel: this.reorderLevelCtrl.value, discontinued: this.discontinuedCtrl.value
+    });
+
+    this.matDialog.closeAll();
+  }
 }
