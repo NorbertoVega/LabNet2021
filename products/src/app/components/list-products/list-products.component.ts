@@ -13,20 +13,22 @@ import { Observable, of } from 'rxjs';
 @Component({
   selector: 'app-list-products',
   templateUrl: './list-products.component.html',
-  styleUrls: ['./list-products.component.css']
+  styleUrls: ['./list-products.component.css'],
+  providers: [ProductService]
 })
 export class ListProductsComponent implements OnInit {
 
-  productList$: Observable<Product[]>;
+  productList$: Observable<any[]>;
 
-  dataSource : Product[] 
+  public dataSource = [];
 
   constructor(private matDialog: MatDialog, private listService: ProductService) { }
 
   ngOnInit(): void {
-    this.dataSource = this.listService.getProducts();
-    this.productList$ = this.listService.getProductList$();
-    this.productList$.subscribe(products => this.dataSource = products);
+
+    this.listService.getProducts().subscribe((resp:any) => {
+      this.dataSource = Array.from(resp);
+    })
   }
 
   openDialog(): void {
@@ -38,6 +40,6 @@ export class ListProductsComponent implements OnInit {
   }
 
   deleteProduct(_id): void {
-    this.listService.deleteProduct(_id);
+    this.listService.deleteProduct(_id).subscribe();
   }
 }

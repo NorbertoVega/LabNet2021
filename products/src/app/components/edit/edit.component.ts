@@ -50,23 +50,41 @@ export class EditComponent implements OnInit {
 
   constructor(private formBuilder: FormBuilder, @Inject(MAT_DIALOG_DATA) public data: {editId: string}, private listService: ProductService, private matDialog: MatDialog) { }
 
-  private auxProduct : Product;
+  private auxProduct;
 
   ngOnInit(): void {
 
     var _id = +this.data.editId;
-    this.auxProduct = this.listService.getOneProduct(_id);
+    this.listService.getOneProduct(_id).subscribe((resp:any) =>{
+      
+      this.auxProduct = resp
+
+      this.form = this.formBuilder.group ({
+        name: [this.auxProduct.ProductName], 
+        supplierId: [this.auxProduct.SupplierID],
+        categoryId: [this.auxProduct.CategoryID],
+        quantity: [this.auxProduct.QuantityPerUnit],
+        unitPrice: [this.auxProduct.UnitPrice],
+        unitsStock: [this.auxProduct.UnitsInStock],
+        unitsOnOrder: [this.auxProduct.UnitsOnOrder],
+        reorderLevel: [this.auxProduct.ReorderLevel],
+        discontinued: [this.auxProduct.Discontinued]
+      });
+
+    });
+    console.log('aux: '+ this.auxProduct);
+
 
     this.form = this.formBuilder.group ({
-      name: [this.auxProduct.name], 
-      supplierId: [this.auxProduct.supplierId],
-      categoryId: [this.auxProduct.categoryId],
-      quantity: [this.auxProduct.quantityPUnit],
-      unitPrice: [this.auxProduct.unitPrice],
-      unitsStock: [this.auxProduct.unitsInStock],
-      unitsOnOrder: [this.auxProduct.unitsOnOrder],
-      reorderLevel: [this.auxProduct.reorderLevel],
-      discontinued: [this.auxProduct.discontinued]
+      name: [''], 
+      supplierId: [''],
+      categoryId: [''],
+      quantity: [''],
+      unitPrice: [''],
+      unitsStock: [''],
+      unitsOnOrder: [''],
+      reorderLevel: [''],
+      discontinued: ['']
     });
   }
 
@@ -106,12 +124,23 @@ export class EditComponent implements OnInit {
 
   editProduct() {
     const _id = +this.data.editId;
+    console.log('id que va a modificar: '+ _id)
 
     this.listService.editProduct({
-      id: _id, name: this.nameCtrl.value, supplierId: this.supplierIdCtrl.value, categoryId: this.categoryIdCtrl.value, quantityPUnit: this.quantityCtrl.value, unitPrice: this.unitPriceCtrl.value,
-      unitsInStock: this.unitsStockCtrl.value, unitsOnOrder: this.unitsOnOrderCtrl.value, reorderLevel: this.reorderLevelCtrl.value, discontinued: this.discontinuedCtrl.value
-    });
+      ProductId: _id, 
+      ProductName: this.nameCtrl.value,
+      SupplierID: this.supplierIdCtrl.value,
+      CategoryID: this.categoryIdCtrl.value,
+      QuantityPerUnit: this.quantityCtrl.value,
+      UnitPrice: this.unitPriceCtrl.value,
+      UnitsInStock: this.unitsStockCtrl.value,
+      UnitsOnOrder: this.unitsOnOrderCtrl.value,
+      ReorderLevel: this.reorderLevelCtrl.value,
+      Discontinued: this.discontinuedCtrl.value
+    }).subscribe();
 
     this.matDialog.closeAll();
   }
 }
+
+      

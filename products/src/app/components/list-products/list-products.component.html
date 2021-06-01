@@ -1,30 +1,32 @@
+<br><br>
+<button class="btn btn-primary" (click)="openDialog()">Add Product</button>
+<br><br>
+
 <div class="grid-container" *ngFor="let product of dataSource">
     <div class="grid-item">
     <mat-card class="product-card">
         <mat-card-header>
-            <mat-card-title>{{product.name}}</mat-card-title>
-            <mat-card-subtitle>{{product.id}}</mat-card-subtitle>
+            <mat-card-title>{{product.ProductName}}</mat-card-title>
+            <mat-card-subtitle>Product id: {{product.ProductID}}</mat-card-subtitle>
         </mat-card-header>
         <mat-card-content>
             <p>
-                Supplier ID: {{product.supplierId}}<br>
-                Category ID: {{product.categoryId}}<br>
-                Quantity per Unit: {{product.quantityPUnit}}<br>
-                Unit Price: {{product.unitPrice}}<br>
-                Units in stock: {{product.unitsStock}}<br>
-                Units on order: {{product.unitsOnOrder}}<br>
-                Reorder level: {{product.reorderLevel}}<br>
-                Discontinued: {{product.discontinued}}<br>
+                Supplier ID: {{product.SupplierID}}<br>
+                Category ID: {{product.CategoryID}}<br>
+                Quantity per Unit: {{product.QuantityPerUnit}}<br>
+                Unit Price: {{product.UnitPrice}}<br>
+                Units in stock: {{product.UnitsInStock}}<br>
+                Units on order: {{product.UnitsOnOrder}}<br>
+                Reorder level: {{product.ReorderLevel}}<br>
+                Discontinued: {{product.Discontinued}}<br>
             </p>
         </mat-card-content>
         <mat-card-actions>
-            <button type="button" class="btn btn-danger" (click)="openEditDialog(product.id)">Edit</button>
+            <button type="button" class="btn btn-danger" (click)="openEditDialog(product.ProductID)">Edit</button>
             &nbsp;&nbsp;&nbsp;&nbsp;
-            <button type="button" class="btn btn-danger"(click)="deleteProduct(product.id)">Delete</button>
+            <button type="button" class="btn btn-danger"(click)="deleteProduct(product.ProductID)">Delete</button>
         </mat-card-actions>
     </mat-card>
     </div>
 </div>
 
-<br><br>
-<button class="btn btn-primary" (click)="openDialog()">Add Product</button>

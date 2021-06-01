@@ -12,6 +12,7 @@ import {MatToolbarModule} from '@angular/material/toolbar';
 import {ReactiveFormsModule} from '@angular/forms';
 import {MatDialogModule} from '@angular/material/dialog';
 import {MatCardModule} from '@angular/material/card';
+import { HttpClientModule } from "@angular/common/http";
 
 
 
@@ -30,6 +31,7 @@ import {MatCardModule} from '@angular/material/card';
     ReactiveFormsModule,
     MatDialogModule,
     MatCardModule,
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]

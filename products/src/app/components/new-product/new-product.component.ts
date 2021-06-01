@@ -5,8 +5,6 @@ import { ProductService } from '../../services/product.service';
 
 import { MatDialog } from '@angular/material/dialog';
 
-var nextId = 6;
-
 @Component({
   selector: 'app-new-product',
   templateUrl: './new-product.component.html',
@@ -43,7 +41,6 @@ export class NewProductComponent implements OnInit {
   get discontinuedCtrl():AbstractControl {
     return this.form.get('discontinued');
   }
-
 
   constructor(private formBuilder: FormBuilder, private listService: ProductService, private dialog: MatDialog ) { }
 
@@ -95,14 +92,20 @@ export class NewProductComponent implements OnInit {
       this.discontinuedCtrl.setValue('');
     }
   }
-
   
   addProduct() {
     this.listService.addProduct({
-      id: nextId, name: this.nameCtrl.value, supplierId: this.supplierIdCtrl.value, categoryId: this.categoryIdCtrl.value, quantityPUnit: this.quantityCtrl.value, unitPrice: this.unitPriceCtrl.value,
-      unitsInStock: this.unitsStockCtrl.value, unitsOnOrder: this.unitsOnOrderCtrl.value, reorderLevel: this.reorderLevelCtrl.value, discontinued: this.discontinuedCtrl.value
-    });
-    nextId = nextId + 1;
+      ProductID: 1,
+      ProductName: this.nameCtrl.value,
+      SupplierID: this.supplierIdCtrl.value,
+      CategoryID: this.categoryIdCtrl.value,
+      QuantityPerUnit: this.quantityCtrl.value,
+      UnitPrice: this.unitPriceCtrl.value,
+      UnitsInStock: this.unitsStockCtrl.value,
+      UnitsOnOrder: this.unitsOnOrderCtrl.value,
+      ReorderLevel: this.reorderLevelCtrl.value,
+      Discontinued: this.discontinuedCtrl.value
+    }).subscribe();
     this.dialog.closeAll();
   }
 
