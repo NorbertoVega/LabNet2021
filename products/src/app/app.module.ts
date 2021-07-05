@@ -14,8 +14,6 @@ import {MatDialogModule} from '@angular/material/dialog';
 import {MatCardModule} from '@angular/material/card';
 import { HttpClientModule } from "@angular/common/http";
 
-
-
 @NgModule({
   declarations: [
     AppComponent,

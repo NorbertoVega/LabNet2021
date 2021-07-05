@@ -5,10 +5,9 @@ import { EditComponent } from '../edit/edit.component';
 
 import { MatDialog } from '@angular/material/dialog';
 
-import { ProductService } from '../../services/product.service';
-import { Product } from '../../models/Products';
+import { ProductService } from '../product.service';
+import { Observable } from 'rxjs';
 
-import { Observable, of } from 'rxjs';
 
 @Component({
   selector: 'app-list-products',
@@ -18,17 +17,18 @@ import { Observable, of } from 'rxjs';
 })
 export class ListProductsComponent implements OnInit {
 
-  productList$: Observable<any[]>;
-
   public dataSource = [];
 
   constructor(private matDialog: MatDialog, private listService: ProductService) { }
 
-  ngOnInit(): void {
+  ngOnInit() {
 
     this.listService.getProducts().subscribe((resp:any) => {
-      this.dataSource = Array.from(resp);
-    })
+      this.dataSource = resp;
+      this.listService.productList = resp;  
+      this.dataSource = this.listService.productList;
+    });
+
   }
 
   openDialog(): void {
@@ -36,10 +36,14 @@ export class ListProductsComponent implements OnInit {
   }
 
   openEditDialog(_id): void {
-    this.matDialog.open(EditComponent, {data: {editId: _id}});
+    this.matDialog.open(EditComponent, { data: { editId: _id } });
   }
 
-  deleteProduct(_id): void {
-    this.listService.deleteProduct(_id).subscribe();
-  }
+  async deleteProduct(_id) {
+    this.listService.deleteProduct(_id).subscribe(
+      res =>  window.location.reload(),
+      error => console.log(error.message),
+      () => console.log('Borrado con exito')
+    );
+    }
 }

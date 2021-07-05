@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { AbstractControl, FormBuilder, FormGroup } from '@angular/forms';
 
-import { ProductService } from '../../services/product.service';
+import { ProductService } from '../product.service';
 
 import { MatDialog } from '@angular/material/dialog';
 
@@ -94,7 +94,7 @@ export class NewProductComponent implements OnInit {
   }
   
   addProduct() {
-    this.listService.addProduct({
+     this.listService.addProduct({
       ProductID: 1,
       ProductName: this.nameCtrl.value,
       SupplierID: this.supplierIdCtrl.value,
@@ -105,7 +105,12 @@ export class NewProductComponent implements OnInit {
       UnitsOnOrder: this.unitsOnOrderCtrl.value,
       ReorderLevel: this.reorderLevelCtrl.value,
       Discontinued: this.discontinuedCtrl.value
-    }).subscribe();
+    }).subscribe(
+      res =>  window.location.reload(),
+      error => console.log('Error al agregar:' + error),
+      () => console.log('Borrado con exito')
+    );
+
     this.dialog.closeAll();
   }
 

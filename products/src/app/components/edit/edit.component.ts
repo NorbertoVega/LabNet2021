@@ -6,8 +6,7 @@ import {MAT_DIALOG_DATA} from '@angular/material/dialog';
 
 import { MatDialog } from '@angular/material/dialog';
 
-import { ProductService } from '../../services/product.service';
-import { Product } from '../../models/Products';
+import { ProductService } from '../product.service';
 
 
 @Component({
@@ -71,7 +70,7 @@ export class EditComponent implements OnInit {
         discontinued: [this.auxProduct.Discontinued]
       });
 
-    });
+    }, error => console.log(error));
     console.log('aux: '+ this.auxProduct);
 
 
@@ -137,7 +136,11 @@ export class EditComponent implements OnInit {
       UnitsOnOrder: this.unitsOnOrderCtrl.value,
       ReorderLevel: this.reorderLevelCtrl.value,
       Discontinued: this.discontinuedCtrl.value
-    }).subscribe();
+    }).subscribe(
+      res =>  window.location.reload(),
+      error => console.log('Error al editar' + error),
+      () => console.log('Borrado con exito')
+    );
 
     this.matDialog.closeAll();
   }
